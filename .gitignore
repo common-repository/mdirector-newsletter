@@ -1,0 +1,15 @@
+*.iml
+out
+gen
+
+#SVN Folders
+/branches/
+/tags/
+/cache
+/log/
+
+IDE Settings
+.idea/
+/nbproject/
+
+/.svn/

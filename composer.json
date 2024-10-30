@@ -1,0 +1,12 @@
+{
+    "name": "mdirector/mdirector-newsletter",
+    "type": "plugin",
+    "require": {
+        "twig/twig": "^1.0",
+        "ext-json": "*",
+        "monolog/monolog": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {"Log\\": "src/Log/"}
+    }
+}

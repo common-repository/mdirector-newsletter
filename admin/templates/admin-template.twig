@@ -1,0 +1,1031 @@
+{% block header %}
+    <div class="mdirector-header"></div>
+    <p class="mdirector-text">{{ 'PLUGIN-PRESENTATION' | translate }}</p>
+    <h3 class="mdirector nav-tab-wrapper">
+        {% for tab, name in tabs %}
+            {% set class = (currentTab == tab) ? ' nav-tab-active' : '' %}
+            <a class="{{ tab }} {{ class }} nav-tab" href="?page=mdirector-newsletter&tab={{ tab }}">{{ name }}</a>
+        {% endfor %}
+    </h3>
+{% endblock %}
+
+{% block headerListsCampaignsTable %}
+    <div class="md_newsletter--table-header e-100 m0">
+        <div class="md_newsletter--table-cell e-50 text-left">{{ 'LANGUAGE' | translate }}</div>
+        <div class="md_newsletter--table-cell e-50 text-left">{{ elementTitle | translate }}</div>
+    </div>
+{% endblock %}
+
+{% block help %}
+    <h4>{{ 'TAB-CONTENT-HELP__TITLE' | translate }}</h4>
+    <p>{{ 'TAB-CONTENT-HELP__SUBTITLE' | translate }}</p>
+    <ol style="max-width:90%">
+        <li><p>{{ 'PLUGIN-PRESENTATION__FIRST-STEP' | translate }}</p></li>
+        <li><p>{{ 'PLUGIN-PRESENTATION__SECOND-STEP' | translate }}</p>
+            <br><a href="{{ assets }}/settings-api.png" target="_blank" title="Settings" alt="Settings"><img src="{{ assets }}/settings-api.png" style="max-width: 1200px"/></a></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-3' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-4' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-5' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-6' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-7' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-8' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-9' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-10' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-11' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-12' | translate }}</p></li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-13' | translate }}</p></li>
+        <li>
+            <p>{{ 'TAB-CONTENT-HELP__LIST-14' | translate }}</p>
+            <div align="center"><img src="{{ assets }}/custom-templates.png" alt="{{ 'TAB-CONTENT-HELP__LIST-14-EXAMPLE' | translate }}"></div>
+            <p>{{ 'TAB-CONTENT-HELP__LIST-14-DISCLAIMER' | translate }}</p>
+            <p>{{ 'TAB-CONTENT-HELP__LIST-14-THEME-CHILD-SUPPORT' | translate }}</p>
+        </li>
+        <li><p>{{ 'TAB-CONTENT-HELP__LIST-15' | translate }}<a href="http://stackoverflow.com/questions/12895706/when-does-wp-cron-php-run-in-wordpress" target="_blank">{{ 'MORE-INFO' | translate }}</a></p></li>
+    </ol>
+{% endblock %}
+
+{% block welcome %}
+    <div class="mdirector-welcome-box"><a href="https://signup.mdirector.com?lang=es" target="_blank">
+            <img src="{{ assets }}/mdirector-welcome.png"/></a>
+        <h3>{{ 'TAB-CONTENT-WELCOME__TITLE' | translate }}</h3>
+        <p>{{ 'TAB-CONTENT-WELCOME__TEXT-1' | translate }}</p>
+        <p>{{ 'TAB-CONTENT-WELCOME__TEXT-2' | translate }}</p>
+        <p>{{ 'TAB-CONTENT-WELCOME__TEXT-3' | translate }}</p>
+        <p>{{ 'TAB-CONTENT-WELCOME__TEXT-4' | translate }}</p>
+
+        <br class="clear">
+        <div class="overflow">
+            <p class="overflow">
+                <a class="btn-orange"
+                        href="https://signup.mdirector.com?lang=es"
+                        target="_blank">{{ 'CREATE-ACCOUNT' | translate }}</a>
+                <a class="btn-blue"
+                        href="admin.php?page=mdirector-newsletter&tab=settings">{{ 'HAVE-ACCOUNT' | translate }}</a>
+            </p>
+        </div>
+        <br class="clear">
+    </div>
+{% endblock %}
+
+{% block wpmlCompatibility %}
+    <div class="mdirector-settings-box">
+        <h4 class="margin-bottom-5">{{ 'WPLM-DETECTED' | translate }}</h4>
+        <div class="md_newsletter--wpml-logo-container overflow">
+            <img class="left"
+                    alt="wpml logo"
+                    src="{{ assets }}\wpml-logo-64.png">
+            <p class="left">
+                {{ 'STEP-8__PLUGIN-AVAILABLE-TEXT-1' | translate }}
+                <a href="https://wpml.org" target="_blank" title="WPML">WPML</a>
+                {{ 'STEP-8__PLUGIN-AVAILABLE-TEXT-2' | translate }}
+                <br><br>
+                {{ 'STEP-8__PLUGIN-AVAILABLE-TEXT-4' | translate }}
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block htmlUsedLists %}
+    <div class="md_newsletter--table-row">
+        <div class="md_newsletter--table-cell">
+            <label for="{{ inputName }}"><span>{{ langName }}:</span></label>
+        </div>
+        <div class="md_newsletter--table-cell">
+            <input id="{{ inputName }}"
+                    name="{{ inputName }}"
+                    autocomplete="off"
+                    placeholder="{{ selectedId|default(placeholder) }}"
+                    type="text" value="{{ selectedId }}"/>
+        </div>
+        <div class="md_newsletter--table-cell md_newsletter--text-center">
+            <span>{{ defaultList | default('---') }}</span>
+        </div>
+        <div class="md_newsletter--table-cell">
+            <label for="{{ activeField }}">
+                {% set checked = activeFieldValue == on ? 'checked' : '' %}
+                <input id="{{ activeField }}"
+                        type="checkbox"
+                        name="{{ activeField }}"
+                        autocomplete="off"
+                        value="{{ on }}" {{ checked }}>
+            </label>
+        </div>
+    </div>
+{% endblock %}
+
+{% block fixedSubjects %}
+    <div class="md_newsletter--panel__row">
+        <label for="{{ inputName }}"><span>{{ langName }}:</span></label>
+        <input {{ readOnly ? 'readonly' : '' }}
+                id="{{ inputName }}"
+                name="{{ inputName }}"
+                class="field-selector"
+                placeholder="{{ 'STEP-4-5__SUBJECT' | translate }}"
+                type="text"
+                value="{{ subjectValue }}"/>
+    </div>
+{% endblock %}
+
+{% block dynamicSubjects %}
+    <div class="md_newsletter--panel__row-alt">
+        <label for="{{ inputName }}"><span>{{ langName }}:</span></label>
+        <input {{ readOnly ? 'readonly' : '' }}
+                id="{{ inputName }}"
+                name="{{ inputName }}"
+                placeholder="{{ 'STEP-4__DYNAMIC-PREFIX' | translate }}"
+                type="text"
+                value="{{ subjectValue }}"/>
+    </div>
+{% endblock %}
+
+{% block privacyPolicy %}
+    <div class="md_newsletter--table-row">
+        <div class="md_newsletter--table-cell-small">
+            <label for="{{ currentText }}"><span>{{ langName }}:</span></label>
+        </div>
+        <div class="md_newsletter--table-cell">
+            <input id="{{ currentText }}"
+                    name="{{ currentText }}"
+                    autocomlete="off"
+                    placeholder="{{ 'STEP-7__ACCEPT-POLICY-TEXT' | translate }}"
+                    type="text" value="{{ currentTextValue }}"/>
+        </div>
+        <div class="md_newsletter--table-cell">
+            <input id="{{ currentUrl }}"
+                    name="{{ currentUrl }}"
+                    autocomlete="off"
+                    placeholder="{{ 'STEP-7__POLICY-URL' | translate }}"
+                    type="text" value="{{ currentUrlValue }}"/>
+        </div>
+        <div class="md_newsletter--table-cell">
+            <label for="{{ activeField }}">
+                <input id="{{ activeField }}"
+                        type="checkbox"
+                        name="{{ activeField }}"
+                        autocomplete="off"
+                        value="{{ on }}"
+                        {{ checked ? 'checked' : '' }}/>
+            </label>
+        </div>
+    </div>
+{% endblock %}
+
+{% block firstStep %}
+    <div class="mdirector-settings-box">
+        <h4>{{ 'STEP-1__TITLE' | translate }}</h4>
+        <p>{{ 'STEP-1__DESCRIPTION' | translate }}</p>
+
+        <div class="md_newsletter--wpml-templates">
+            <div class="md_newsletter--panel__wrapper">
+                <label class="select" for="mdirector_api">{{ 'consumer-key' | translate }}:</label>
+                <input id="mdirector_api"
+                        name="mdirector_api"
+                        type="text"
+                        value="{{ api }}"/>
+                <span class="help-block"></span>
+            </div>
+            <div class="md_newsletter--panel__wrapper">
+                <label class="select" for="mdirector_secret">{{ 'consumer-secret' | translate }}:</label>
+                <input id="mdirector_secret"
+                        name="mdirector_secret"
+                        type="text"
+                        value="{{ secret }}"/>
+                <span class="help-block"></span>
+            </div>
+        </div>
+        <br class="clear">
+    </div>
+{% endblock %}
+
+{% block campaignsBlock %}
+    <div class="md_newsletter--wpml-templates">
+        <span class="select">{{ 'STEP-2__WEEKLY-CAMPAIGNS' | translate }}:</span>
+        <div class="md_newsletter--table e-100">
+            {{ headerCampaignsTable }}
+            {{ weeklyCampaigns }}
+        </div>
+    </div>
+
+    <div class="md_newsletter--wpml-templates">
+        <span class="select">{{ 'STEP-2__DAILY-CAMPAIGNS' | translate }}:</span>
+        <div class="md_newsletter--table e-100">
+            {{ headerCampaignsTable }}
+            <div class="md_newsletter--table-row">
+                {{ dailyCampaigns }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block campaignLanguageBlock %}
+    <div class="md_newsletter--table-row">
+        <div class="md_newsletter--table-cell">{{ langName }}</div>
+        <div class="md_newsletter--table-cell">{{ campaignSelector }}</div>
+    </div>
+{% endblock %}
+
+{% block secondStep %}
+    <div class="mdirector-settings-box">
+        <h4>{{ 'STEP-2__TITLE' | translate }}</h4>
+        <p>{{ 'STEP-2__CAMPAIGNS-DESCRIPTION' | translate }}</p>
+        {{ campaignsBlock }}
+
+        <div class="md_newsletter--panel__wrapper">
+            <button type="submit"
+                    class="margin-top-10 margin-bottom-30 button button-submit"
+                    name="cpt_submit_create_campaings"
+                    value="create_lists_now">{{ 'STEP-2__CAMPAIGNS-CREATE-CAMPAINGS' | translate }}</button>
+        </div>
+
+        <div class="md_newsletter--panel__wrapper">
+            <h4>{{ 'STEP-2__CUSTOM-LISTS' | translate }}</h4>
+            <p>{{ 'STEP-2__DESCRIPTION' | translate }}</p>
+            <p class="notice-block margin-top-20">{{ 'STEP-2__DESCRIPTION_WARNING' | translate }}</p>
+
+            <div id="mdirector-custom-lists" class="md_newsletter--wpml-templates margin-top-30">
+                <div class="weekly_extra_selector">
+                    <fieldset class="margin-bottom-20">
+                        <legend>{{ 'STEP-2__DAILY-LIST' | translate }}:</legend>
+                        <div class="md_newsletter--table e-100 m0 margin-top-10">
+                            {{ headerListsTable }}
+                            {{ selectedDailyLists }}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="weekly_extra_selector">
+                    <fieldset>
+                        <legend>{{ 'STEP-2__WEEKLY-LIST' | translate }}:</legend>
+                        <div class="md_newsletter--table e-100 m0 margin-top-10">
+                            {{ headerListsTable }}
+                            {{ selectedWeeklyLists }}
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+
+            <p>{{ 'STEP-2__TEXT-1' | translate }}</p>
+            <button type="submit"
+                    class="margin-top-10 margin-bottom-30 button button-submit"
+                    name="cpt_submit_create_lists"
+                    value="create_lists_now">{{ 'STEP-2__CREATE-LISTS' | translate }}</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block listSelector %}
+    <div class="md_newsletter--table-row e-100 m0">
+        <div class="md_newsletter--table-cell e-50">{{ langName }}</div>
+        <div class="md_newsletter--table-cell e-50">
+            <div class="categories_list md-user-lists-wrapper text-left">
+                {{ listsHMTL }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block userListItem %}
+<li class="{{ type }}" data-related="{{ extraData }}" data-type="{{ type }}" data-value="{{ inputValue }}">
+    <label class="selectit">
+        <input value="{{ inputValue }}"
+                type="checkbox"
+                title="{{ title }} ({{ inputValue }})"
+                name="{{ inputName }}[]"
+                {{ selected }}>
+        <span title="{{ title }} ({{ inputValue }})">{{ title }}</span>
+    </label>
+    {% endblock %}
+
+    {% block thirdStep %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'STEP-3__TITLE' | translate }}</h4>
+            <p>{{ 'STEP-3__DESCRIPTION' | translate }}</p>
+
+            <div class="md_newsletter--wpml-templates">
+                <div class="md_newsletter--panel__wrapper">
+                    <label class="select" for="mdirector_from_name">{{ 'STEP-3__FROM-NAME' | translate }}:</label>
+                    <input id="mdirector_from_name"
+                            name="mdirector_from_name"
+                            type="text"
+                            placeholder="{{ 'STEP-3__FROM-NAME-PLACEHOLDER' | translate }}"
+                            value="{{ fromName }}"/>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block fourthStep %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'STEP-4__TITLE' | translate }}</h4>
+            <p>{{ 'STEP-4__DESCRIPTION' | translate }}</p>
+            <br class="clear">
+            <input type="checkbox"
+                    name="mdirector_frequency_weekly"
+                    id="mdirector_frequency_weekly"
+                    autocomplete="off"
+                    data-toggle="weekly_extra"
+                    value="{{ on }}" {{ frequencyWeeklyChecked }}/>
+            <label for="mdirector_frequency_weekly">{{ 'STEP-4__ACTIVATE-WEEKLY-DELIVERIES' | translate }}</label>
+            <br class="clear">
+
+            <div id="weekly_extra"
+                    class="weekly_extra_selector"
+                    style="{{ frequencyWeeklyChecked ? 'display: block' : '' }}">
+
+                <fieldset class="margin-bottom-20">
+                    <legend>{{ 'STEP-4-5__WEEKLY-FROM' | translate }}:</legend>
+                    <div class="choice-block">
+                        <input id="mdirector_from_weekly"
+                                class="field-selector"
+                                name="mdirector_from_weekly"
+                                type="text"
+                                placeholder="{{ 'STEP-3__FROM-NAME-PLACEHOLDER' | translate }}"
+                                value="{{ fromWeekly }}"/>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>{{ 'STEP-4-5__CHOOSE-SUBJECT' | translate }}</legend>
+                    <div class="choice-block">
+                        <input {{ (typeWeekly == fixedSubject) ? 'checked' : '' }}
+                                type="radio"
+                                name="mdirector_subject_type_weekly"
+                                class="dynamic-choice"
+                                id="subject-type-fixed"
+                                value="fixed"
+                                autocomplete="off">
+                        <label for="subject-type-fixed">{{ 'STEP-4-5__FIXED-SUBJECT' | translate }}:</label>
+                        <br>
+                        <div class="subject-block subset {{ typeWeekly != fixedSubject ? 'disabled' : '' }}">
+                            <div class="md_newsletter--panel__wrapper">
+                                <div class="select text-right">
+                                    {{ fixedSubjects }}
+                                    <span class="help-block"
+                                            style="margin-left: 140px">{{ 'STEP-4__SUBJECT-EXAMPLE' | translate }} {{ blogName }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choice-block">
+                        <input {{ isSubjectDynamic ? 'checked' : '' }}
+                                type="radio"
+                                name="mdirector_subject_type_weekly"
+                                class="dynamic-choice"
+                                id="subject-type-dynamic"
+                                value="dynamic"
+                                autocomplete="off">
+                        <label for="subject-type-dynamic">{{ 'STEP-4-5__DYNAMIC-SUBJECT' | translate }}
+                            <small>{{ 'STEP-4-5__DYNAMIC-SUBJECT-DESCRIPTION' | translate }}:</small>
+                        </label>
+                        <br>
+
+                        <div class="subject-block subset md_newsletter--panel__wrapper {{ typeWeekly != dynamicSubject ? 'disabled' : '' }}">
+                            <div class="block-50">{{ dynamicSubjects }}</div>
+                            <div class="block-50">
+                                <select {{ typeWeekly == fixedSubject ? 'readonly' : '' }}
+                                        name="mdirector_subject_dynamic_value_weekly">{{ optionsSubjectWeeklyDynamic }}</select>
+                                <span class="help-block">{{ 'STEP-4-5__CHOOSE-DYNAMIC-CONTENT' | translate }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <br class="clear">
+
+                <fieldset>
+                    <legend>{{ 'STEP-4-5__SCHEDULER' | translate }}:</legend>
+                    <div class="margin-top-10 margin-bottom-10">
+                        <label class="select">{{ 'STEP-4__WEEKDAY' | translate }}</label>
+                        <select name="mdirector_frequency_day">{{ optionsDays }}</select>
+                    </div>
+                    <div class="margin-top-10 margin-bottom-10">
+                        <label class="select">{{ 'STEP-4-5__DELIVERY-TIME' | translate }}</label>
+                        <input id="mdirector_hour_weekly"
+                                name="mdirector_hour_weekly"
+                                type="text"
+                                class="timepicker"
+                                readonly
+                                value="{{ hourWeekly }}"/>
+                        <span
+                                class="help-block">{{ 'STEP-4-5__DELIVERY-TIME-NOTE' | translate }} {{ 'now' | date('H:i') }}</span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block fifthStep %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'STEP-5__TITLE' | translate }}</h4>
+            <p>{{ 'STEP-5__DESCRIPTION' | translate }}</p>
+            <br class="clear">
+            <label><input type="checkbox"
+                        name="mdirector_frequency_daily"
+                        class="dynamic-choice"
+                        id="mdirector_frequency_daily"
+                        autocomplete="off"
+                        data-toggle="daily_extra"
+                        value="{{ on }}"
+                        {{ mdirectorFrequencyDaily == on ? 'checked' : '' }}/>{{ 'STEP-5__ACTIVATE-DAILY-DELIVERIES' | translate }}</label>
+
+            <div id="daily_extra"
+                    class="weekly_extra_selector"
+                    style="{{ mdirectorFrequencyDaily == on ? 'display: block' : '' }}">
+
+                <fieldset class="margin-bottom-20">
+                    <legend>{{ 'STEP-4-5__WEEKLY-FROM' | translate }}:</legend>
+                    <div class="choice-block">
+                        <input id="mdirector_from_daily"
+                                class="field-selector"
+                                name="mdirector_from_daily"
+                                type="text"
+                                placeholder="{{ 'STEP-3__FROM-NAME-PLACEHOLDER' | translate }}"
+                                value="{{ fromDaily }}"/>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>{{ 'STEP-4-5__CHOOSE-SUBJECT' | translate }}</legend>
+                    <div class="choice-block">
+                        <input {{ (subjectType == fixedSubject) ? 'checked' : '' }}
+                                type="radio"
+                                name="mdirector_subject_type_daily"
+                                class="dynamic-choice"
+                                id="subject-type-daily-fixed" value="fixed"/>
+                        <label for="subject-type-daily-fixed">{{ 'STEP-4-5__FIXED-SUBJECT' | translate }}:</label><br>
+
+                        <div class="subject-block subset {{ subjectType != fixedSubject ? 'disabled' : '' }}">
+                            <div class="md_newsletter--panel__wrapper">
+                                <div class="select text-right">
+                                    {{ fixedDailySubjects }}
+                                    <span class="help-block"
+                                            style="margin-left: 140px">{{ 'STEP-5__SUBJECT-EXAMPLE' | translate }} {{ blogName }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choice-block">
+                        <input {{ isSubjectDynamic ? 'checked' : '' }}
+                                type="radio"
+                                name="mdirector_subject_type_daily"
+                                class="dynamic-choice"
+                                id="subject-type-dynamic"
+                                value="dynamic"
+                                autocomplete="off">
+                        <label for="subject-type-dynamic">{{ 'STEP-4-5__DYNAMIC-SUBJECT' | translate }}
+                            <small>{{ 'STEP-4-5__DYNAMIC-SUBJECT-DESCRIPTION' | translate }}:</small>
+                        </label>
+                        <br>
+
+                        <div class="subject-block subset {{ subjectType != dynamicSubject ? 'disabled' : '' }}">
+                            <div class="md_newsletter--panel__wrapper">
+                                <div class="block-50">
+                                    {{ dynamicDailySubjects }}
+                                </div>
+                                <div class="block-50">
+                                    <select {{ subjectType == fixedSubject ? 'readonly' : '' }}
+                                            name="mdirector_subject_dynamic_value_daily">{{ optionsSubjectDailyDynamic }}</select>
+                                    <span class="help-block">{{ 'STEP-4-5__CHOOSE-DYNAMIC-CONTENT' | translate }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <br class="clear">
+
+                <fieldset>
+                    <legend>{{ 'STEP-4-5__SCHEDULER' | translate }}:</legend>
+                    <div class="margin-top-10 margin-bottom-10">
+                        <span>{{ 'STEP-4-5__DELIVERY-WEEKDAY-SELECTOR' | translate }}</span>
+                        <div class="md_newsletter--weekDays__selector">{{ weekdaySelectorHTML }}</div>
+                    </div>
+                    <div class="margin-top-10 margin-bottom-10">
+                        <label class="select">{{ 'STEP-4-5__DELIVERY-TIME' | translate }}</label>
+                        <input id="mdirector_hour_daily"
+                                name="mdirector_hour_daily"
+                                type="text"
+                                class="timepicker"
+                                readonly
+                                value="{{ hour }}"/>
+                        <span class="help-block">{{ 'STEP-4-5__DELIVERY-TIME-NOTE' | translate }} {{ 'now' | date('H:i') }}</span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block sixthStep %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'STEP-6__TITLE' | translate }}</h4>
+            <p>{{ 'STEP-6__DESCRIPTION' | translate }}</p>
+            <div class="categories_list"
+                    id="categories_list" style="{{ excludeCategories ? 'display: block' : '' }}">{{ categories }}</div>
+            <br class="clear">
+        </div>
+    {% endblock %}
+
+    {% block seventhBlock %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'STEP-7__TITLE' | translate }}</h4>
+            <p>{{ 'STEP-7__DESCRIPTION' | translate }}</p>
+            <div class="md_newsletter--wpml-templates">
+                <div class="md_newsletter--table">
+
+                    <div class="md_newsletter--table-header">
+                        <div class="md_newsletter--table-cell-small ">{{ 'LANGUAGE' | translate }}</div>
+                        <div class="md_newsletter--table-cell">{{ 'STEP-7__ACCEPT-POLICY-TEXT' | translate }}</div>
+                        <div class="md_newsletter--table-cell">{{ 'STEP-7__POLICY-URL' | translate }}</div>
+                        <div class="md_newsletter--table-cell">{{ 'ACTIVE' | translate }}</div>
+                    </div>
+                    {{ privacyPolicy }}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block eighthStep %}
+    <div class="mdirector-settings-box">
+        <h4>{{ 'STEP-8__TITLE' | translate }}</h4>
+        <p>{{ 'STEP-8__DESCRIPTION' | translate }}</p>
+        <div class="md_newsletter--wpml-templates">
+            {% endblock %}
+
+            {% block templatesWithoutWPML %}
+                <div class="md_newsletter--panel__wrapper">
+                    <label class="select">{{ 'STEP-8__AVALAIBLE-TEMPLATES' | translate }}</label>
+                    <select class="md_template_select"
+                            name="mdirector_template_general"
+                            id="mdirector_template_general">{{ templateOptions }}</select>
+                </div>
+            {% endblock %}
+
+            {% block templatesForWPML %}
+                <div class="overflow md_newsletter--wpml-container">
+                    <p>{{ 'STEP-8__PLUGIN-AVAILABLE-TEXT-3' | translate }}</p>
+                    <div class="clear md_newsletter--wpml-templates">
+                        {% for language in currentLanguages %}
+                            <div class="overflow">
+                                <div class="md_newsletter--table-cell-small">
+                                    <label class="md_newsletter--lang-name">
+                                        <span>{{ language.translated_name }}:</span>
+                                    </label>
+                                </div>
+                                <div class="md_newsletter--table-cell">
+                                    <select class="md_template_select"
+                                            name="mdirector_template_{{ language.code }}"
+                                            id="mdirector_template_{{ language.code }}">
+                                        {{ templateOptions[language.code] }}
+                                    </select>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block eighthStepBottom %}
+        </div>
+        <div class="md_newsletter--panel__wrapper">
+            <h4>{{ 'STEP-8__PLUGIN-MIN-ENTRIES-TITLE' | translate }}</h4>
+            <p>{{ 'STEP-8__PLUGIN-MIN-ENTRIES-DESCRIPTION' | translate }}</p>
+            <br class="clear">
+            <label class="select" for="mdirector_minimum_entries">{{ 'STEP-8__PLUGIN-MIN-ENTRIES-LABEL' | translate }}</label>
+            <input id="mdirector_minimum_entries" name="mdirector_minimum_entries"
+                    type="number" value="{{ minimumEntries | translate }}" min="0">
+            <span class="help-block"></span>
+        </div>
+        <div class="md_newsletter--panel__wrapper">
+            <h4>{{ 'STEP-8__TEMPLATE-PREVIEW-TITLE' | translate }}</h4>
+            <p>{{ 'STEP-8__TEMPLATE-PREVIEW-DESCRIPTION' | translate }}</p>
+            <button type="submit"
+                    class="margin-top-20 button button-submit"
+                    name="cpt_submit_test_now"
+                    value="{{ templatePreview }}">{{ 'STEP-8__TEMPLATE-PREVIEW-BUTTON' | translate }}</button>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block ninethStep %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'STEP-9__TITLE' | translate }}</h4>
+            <p>{{ 'STEP-9__DESCRIPTION-1' | translate }}</p>
+            <p>{{ 'STEP-9__DESCRIPTION-2' | translate }}</p>
+            <br class="clear">
+            <div class="overflow">
+                <input type="hidden" name="mdirector_daily_sent" value="{{ lastDailySendRaw }}">
+                <input type="hidden" name="mdirector_weekly_sent" value="{{ lastWeeklySendRaw }}">
+                <input type="hidden" name="" value="">
+                <label class="block-50">{{ 'STEP-9__LAST-DAILY-SENDING' | translate }}</label>
+                <label class="block-50">{{ lastDailySend }}</label>
+                <br class="clear"><br class="clear">
+                <label class="block-50">{{ 'STEP-9__LAST-WEEKLY-SENDING' | translate }}</label>
+                <label class="block-50">{{ lastWeeklySend }}</label>
+                <br class="clear">
+                <div class="choice-block">
+                    <button type="submit" class="margin-top-20 button button-submit"
+                            name="cpt_submit_reset_now" value="reset_now">{{ 'STEP-9__RESTART-LAST-DATES' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block logsTab %}
+        <div class="mdirector-settings-box mdirector-settings-box-logger">
+            <h3 class="margin-bottom-5">{{ 'LOGS-TAB__TITLE' | translate }}</h3>
+            <p>{{ 'LOGS-TAB__DESCRIPTION-1' | translate }}</p>
+            <p>{{ 'LOGS-TAB__DESCRIPTION-2' | translate }}</p>
+
+            <br class="clear">
+            <p class="notice-block">{{ 'LOGS-TAB__DISCLAIMER' | translate }}</p>
+
+            {% if mdirectorLogsDeactivated %}
+                <p class="notice-block">{{ 'LOGS-TAB__DEACTIVATED' | translate }}.</p>
+            {% endif %}
+
+            <br class="clear">
+            <textarea class="logs-container" wrap="off" readonly>{{ logsContent }}</textarea>
+            <br class="clear">
+            <br class="clear">
+        </div>
+    {% endblock %}
+
+    {% block submitForm %}
+        <p class="submit">
+            <input type="submit" class="button-primary button"
+                    tabindex="21" name="cpt_submit"
+                    value="{{ 'SAVE' | translate }}">
+
+            {% if isPluginConfigured %}
+                <button type="submit"
+                        class="margin-left-10 button button-submit"
+                        tabindex="22"
+                        name="cpt_submit_test_now"
+                        value="test_now">{{ 'SEND-NOW' | translate }}</button>
+
+                {% if not isEmptyTestLists %}
+                    <small class="margin-left-15 text-red"><strong>{{ 'NOTE' | translate }}:</strong>{{ 'STEP-9__ANNOTATION' | translate }}</small>
+                {% endif %}
+            {% endif %}
+
+        </p>
+        <input type="hidden"
+                name="mdirector-newsletter-submit"
+                value="{{ on }}" />
+    {% endblock %}
+
+    {% block testsTab %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'TAB-CONTENT-DEBUG__TITLE' | translate }}</h4>
+
+            <br class="clear">
+
+            <div class="md_cat_checkbox margin-bottom-30">
+                <label><input type="checkbox"
+                            name="mdirector_use_test_lists"
+                            id="mdirector_use_test_lists"
+                            autocomplete="off"
+                            data-toggle="mdirector-test-lists"
+                            value="{{ on }}" {{ mdirectorUseTestLists == on ? 'checked' : '' }}>{{ 'TAB-CONTENT-DEBUG__USING-TEST-LISTS' | translate }}</label>
+            </div>
+
+            <h4>{{ 'MDSCHEDULER__CHOOSE-CAMPAIGN' | translate }}:</h4>
+            {{ campaignsBlock }}
+
+            <h4>{{ 'MDSCHEDULER__CHOOSE-LISTS' | translate }}</h4>
+            <div id="mdirector-custom-lists" class="md_newsletter--wpml-templates margin-top-30">
+                <div class="weekly_extra_selector">
+                    <fieldset class="margin-bottom-20">
+                        <legend>{{ 'STEP-2__DAILY-LIST' | translate }}:</legend>
+                        <div class="md_newsletter--table e-100 m0 margin-top-10">
+                            {{ headerListsTable }}
+                            {{ selectedDailyLists }}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="weekly_extra_selector">
+                    <fieldset>
+                        <legend>{{ 'STEP-2__WEEKLY-LIST' | translate }}:</legend>
+                        <div class="md_newsletter--table e-100 m0 margin-top-10">
+                            {{ headerListsTable }}
+                            {{ selectedWeeklyLists }}
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <p class="submit">
+            <input type="submit"
+                    class="button-primary button"
+                    tabindex="21"
+                    name="cpt_submit"
+                    value="{{ 'SAVE' | translate }}">
+            <button type="submit"
+                    class="button button-submit"
+                    tabindex="22"
+                    name="cpt_submit_test_now"
+                    value="test_now">{{ 'SEND-TEST-NOW' | translate }}</button>
+        </p>
+        <input type="hidden" name="save-debug-submit" value="{{ on }}" />
+        <input type="hidden" name="tab" value="debug" />
+    {% endblock %}
+
+    {% block advanceTab %}
+        <div class="mdirector-settings-box">
+            <h4>{{ 'TAB-CONTENT-TEMPLATES-TITLE' | translate }}</h4>
+            <br class="clear">
+            <div class="md_cat_checkbox">
+                <label><input type="checkbox"
+                            name="mdirector_hide_sample_templates"
+                            id="mdirector_hide_sample_templates"
+                            autocomplete="off"
+                            data-toggle="mdirector-test-lists"
+                            value="{{ on }}" {{ mdirectorHideSampleTemplates == on ? 'checked' : '' }}>{{ 'TAB-CONTENT-ADVANCE__HIDE-SAMPLE-TEMPLATES' | translate }}</label>
+            </div>
+        </div>
+        <div class="mdirector-settings-box">
+            <h4>{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-TITLE' | translate }}</h4>
+            <p>{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-DESCRIPTION' | translate }}</p>
+            <br class="clear">
+
+            <div class="md_newsletter--panel__wrapper">
+                <h4 class="margin-top-0">{{ 'EDITOR-META-BOX-ACTIVATE' | translate }}:</h4>
+                <div class="md_cat_checkbox">
+                    <label><input type="checkbox"
+                                name="mdirector_scheduler_posts"
+                                id="mdirector_scheduler_posts"
+                                autocomplete="off"
+                                data-toggle="mdirector-test-lists"
+                                value="{{ on }}" {{ mdirectorSchedulerPosts == on ? 'checked' : '' }}>{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-POSTS' | translate }}</label>
+                </div>
+            </div>
+            <div class="md_newsletter--panel__wrapper">
+                <h4 class="margin-top-0">{{ 'MDSCHEDULER__FROM' | translate }}:</h4>
+                <p>{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-DEFAULT-FROM-DESCRIPTION' | translate }}</p>
+                <input id="mdirector_scheduler_default_from_name"
+                        class="field-selector"
+                        name="mdirector_scheduler_default_from_name"
+                        type="text" value="{{ mdirectorSchedulerDefaultFromName }}">
+            </div>
+            <div class="md_newsletter--panel__wrapper">
+                <h4 class="margin-top-0">{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-TAXONOMIES-TITLE' | translate }}:</h4>
+                <p>{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-TAXONOMIES-DESCRIPTION' | translate }}</p>
+                <label class="select" for="mdirector_scheduler_taxonomies">{{ 'TAB-CONTENT-ADVANCE__SCHEDULER-TAXONOMIES-FIELD' | translate }}:</label>
+                <input id="mdirector_scheduler_taxonomies" name="mdirector_scheduler_taxonomies"
+                        type="text" value="{{ mdirectorSchedulerTaxonomies }}">
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+        <div class="mdirector-settings-box">
+            <h4>{{ 'TAB-CONTENT-ADVANCE__LOGS-DEACTIVATE-TITLE' | translate }}</h4>
+            <p class="margin-bottom-30">{{ 'TAB-CONTENT-ADVANCE__LOGS-DEACTIVATE-DESCRIPTION' | translate }}</p>
+            <p class="margin-bottom-30">{{ 'TAB-CONTENT-ADVANCE__LOGS-DEACTIVATE-DESCRIPTION-MORE' | translate }}</p>
+
+            <div class="md_cat_checkbox">
+                <label><input type="checkbox"
+                            name="mdirector_logs_deactivated"
+                            id="mdirector_logs_deactivated"
+                            autocomplete="off"
+                            value="{{ on }}" {{ mdirectorLogsDeactivated == on ? 'checked' : '' }}>
+                    {{ 'TAB-CONTENT-ADVANCE__LOGS-DEACTIVATE-ACTION' | translate }}
+                </label>
+            </div>
+        </div>
+
+        <div class="mdirector-settings-box">
+            <h4>{{ 'TAB-CONTENT-CLEAN-CACHE-TITLE' | translate }}</h4>
+            <p class="margin-bottom-30">{{ 'TAB-CONTENT-CLEAN-CACHE-DESCRIPTION' | translate }}</p>
+
+            <input type="submit"
+                    class="button-primary button button-submit"
+                    tabindex="21"
+                    name="cpt_cleancache"
+                    value="{{ 'CLEAN-CACHE-LABEL' | translate }}">
+        </div>
+
+        <div class="mdirector-settings-box">
+            <h4>{{ 'TAB-CONTENT-RESET-TITLE' | translate }}</h4>
+            <p>{{ 'TAB-CONTENT-RESET-DESCRIPTION' | translate }}</p>
+            <p class="notice-block margin-bottom-30">{{ 'TAB-CONTENT-RESET-WARNING' | translate }}</p>
+
+            <input type="submit"
+                    class="button-primary button button-red"
+                    tabindex="21"
+                    name="cpt_reset"
+                    value="{{ 'RESET-LABEL' | translate }}">
+        </div>
+
+        <p class="submit">
+            <input type="submit"
+                    class="button-primary button"
+                    tabindex="21"
+                    name="cpt_submit"
+                    value="{{ 'SAVE' | translate }}">
+        </p>
+        <input type="hidden" name="save-advance-submit" value="{{ on }}" />
+        <input type="hidden" name="tab" value="advance" />
+        <div>
+            <p class="italic">MDirector Newsletter Plugin, v{{ mdirectorVersion }}</p>
+        </div>
+    {% endblock %}
+
+    {% block MDSchedulerDisabled %}
+        <div class="box--disabled">
+            <p>{{ 'MDSCHEDULER__DISABLED' | translate }} {{ postType | translate }}.</p>
+        </div>
+    {% endblock %}
+
+    {% block MDSchedulerEnabled %}
+        <br />
+        <input type="checkbox" name="{{ mdSchedulerActiveField }}" value="1"
+                {{ mdSchedulerActive ? 'checked' : '' }} />
+        {{ 'MDSCHEDULER__SEND-ON-PUBLISH' | translate }}
+        <br>
+
+        <p>
+            <label for="{{ mdSchedulerFromField }}">{{ 'MDSCHEDULER__FROM' | translate }} *:</label>
+            <input class="widefat"
+                    id="{{ mdSchedulerFromField }}"
+                    name="{{ mdSchedulerFromField }}"
+                    type="text" placeholder="{{ 'STEP-3__FROM-NAME-PLACEHOLDER' | translate }}"
+                    value="{{ mdSchedulerFromFieldValue }}" />
+            <span class="validation-error">{{ 'MDSCHEDULER__REQUIRED_FIELD' | translate }}</span>
+        </p>
+        <p>
+            <label for="{{ mdSchedulerSubjectField }}">{{ 'STEP-4-5__SUBJECT' | translate }} *:</label>
+            <input class="widefat"
+                    id="{{ mdSchedulerSubjectField }}"
+                    name="{{ mdSchedulerSubjectField }}"
+                    type="text" placeholder="{{ mdSchedulerSubjectFieldPlaceholder }}"
+                    value="{{ mdSchedulerSubjectFieldValue }}" />
+            <span class="validation-error">{{ 'MDSCHEDULER__REQUIRED_FIELD' | translate }}</span>
+        </p>
+        <p>
+            <label for="{{ mdSchedulerTemplateField }}">{{ 'MDSCHEDULER__CHOOSE-TEMPLATE' | translate }}:</label>
+            <select class="widefat"
+                    id="{{ mdSchedulerTemplateField }}"
+                    name="{{ mdSchedulerTemplateField }}">{{ mdSchedulerTemplateHTML }}
+            </select>
+        </p>
+
+        <p>
+            <label for="{{ mdSchedulerCampaignField }}">{{ 'MDSCHEDULER__CHOOSE-CAMPAIGN' | translate }}:</label>
+            <select class="widefat"
+                    id="{{ mdSchedulerCampaignField }}"
+                    name="{{ mdSchedulerCampaignField }}">{{ mdSchedulerCampaignHTLM }}
+            </select>
+        </p>
+
+        <p>
+            <label for="{{ mdSchedulerDeliveryField }}">{{ 'STEP-4-5__DELIVERY_NAME' | translate }} *:</label>
+            <input class="widefat"
+                    id="{{ mdSchedulerDeliveryField }}"
+                    name="{{ mdSchedulerDeliveryField }}"
+                    type="text" placeholder="{{ mdSchedulerDeliveryFieldPlaceholder }}"
+                    value="{{ mdSchedulerDeliveryFieldValue }}" />
+            <span class="validation-error">{{ 'MDSCHEDULER__REQUIRED_FIELD' | translate }}</span>
+        </p>
+
+        <div class="md-user-lists-container">
+            <label class="md-user-lists-label">{{ 'MDSCHEDULER__CHOOSE-LISTS' | translate }}</label>
+            <span class="validation-error">{{ 'MDSCHEDULER__REQUIRED_FIELD' | translate }}</span>
+
+            <div class="md-user-lists-wrapper"> {{ mdSchedulerLists }}</div>
+        </div>
+
+        <br />
+
+        <p class="md-flexbox md-space-between">
+            <input type="hidden" id="{{ mdSchedulerSendField }}" name="{{ mdSchedulerSendField }}" value="">
+            <button type="submit" name="save" class="button button-secondary md-button-secondary button-large" value="{{ mdSchedulerPreviewField }}">
+                <span>{{ 'STEP-8__TEMPLATE-PREVIEW-BUTTON' | translate }}</span>
+            </button>
+            <button id="mdscheduler_send_now" type="submit" name="save" class="button md-button-green button-large" value="{{ mdSchedulerSendField }}">
+                <span>{{ 'MDSCHEDULER__SEND-NOW' | translate }}</span>
+            </button>
+        </p>
+    {% endblock %}
+
+    {% block weekDaySelector %}
+        <input type="checkbox" id="{{ fieldName }}" name="{{ fieldName }}" class="weekday"
+                value="{{ on }}" {{ isChecked ? 'checked' : '' }} />
+        <label for="{{ fieldName }}"
+                title="{{ longNameLabel | translate }}">{{ longNameShortcutLabel | translate }}</label>
+
+    {% endblock %}
+
+    {% block updatedInfoNotice %}
+        <div class="updated md_newsletter--info-notice">{{ message | translate }}</div>
+    {% endblock %}
+
+    {% block updatedWithDetailsInfoNotice %}
+        <div class="updated md_newsletter--info-notice">{{ message | translate }}
+            <strong>{{ listName }}</strong>
+            {% if listId %}
+                {{ 'NEW-LISTS__NEW-ID' | translate }}
+                <strong>{{ listId }}</strong>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    {% block updatedErrorNotice %}
+        <div class="updated md_newsletter--error-notice">{{ message | translate }}{{ details }}</div>
+    {% endblock %}
+
+    {% block errorGeneralNotice %}
+        <div class="error md_newsletter--error-notice">{{ message | translate }}{{ details }}</div>
+    {% endblock %}
+
+    {% block categoryOption %}
+        <div class="md_cat_checkbox">
+            <label><input autocomplete="off"
+                        name="mdirector_exclude_cats[]"
+                        type="checkbox"
+                        value="{{ parentCategory.term_id }}"
+                        {{ isSelected ? 'checked' : '' }}>{{ parentCategory.name }}</label>
+        </div>
+    {% endblock %}
+
+    {% block subcategoryOption %}
+        <div class="md_cat_checkbox child {{ extraIndent ? 'grandchild' : '' }}">
+            <label><input name="mdirector_exclude_cats[]"
+                        type="checkbox"
+                        value="{{ term.term_id }}" {{ isChecked ? 'checked' : '' }}>{{ term.name }}</label>
+        </div>
+    {% endblock %}
+
+    {% block buildOption %}
+        <option value="{{ key }}" {{ isSelected ? 'selected' : '' }}>{{ value }}</option>
+    {% endblock %}
+
+    {% block imageTagFromPost %}
+        <img alt="Featured Image"
+                class="headerImage"
+                id="edit-image-trigger"
+                src="{{ post.post_image }}"
+                width="{{ post.post_image_size }}" />
+    {% endblock %}
+
+    {% block selectFrequencyLayer %}
+        <div class="md__newsletter--area__select">
+            <select class="md__newsletter--select" name="{{ fieldName }}frequency">
+                <option value="daily">{{ 'WIDGET-FREQUENCY__DAILY' | translate }}</option>
+                <option value="weekly">{{ 'WIDGET-FREQUENCY__WEEKLY' | translate }}</option>
+            </select>
+        </div>
+    {% endblock %}
+
+    {% block singleFrequencyLayer %}
+        <input class="md__newsletter--select" value="{{ value }}" name="{{ fieldName }}frequency" type="hidden">
+    {% endblock %}
+
+    {% block subscriptionForm %}
+        <form class="{{ formClass }}" name="{{ formName }}" method="post">
+            <div class="md__newsletter--area__input">
+                <input
+                        type="email"
+                        class="md_newsletter--email_input"
+                        placeholder="{{ inputPlaceholder }}"
+                        value=""
+                        name="{{ formPrefix }}email">
+                <input
+                        type="hidden"
+                        class="md_newsletter--lang_input"
+                        name="{{ formPrefix }}user-lang"
+                        value="{{ userLang }}" />
+            </div>{{ selectFrequency }}
+            <div class="md__newsletter--area__suscribe">
+                <p class="md__newsletter--area__accept">
+                    <input
+                            class="md_newsletter--checkbox"
+                            type="checkbox"
+                            name="{{ formPrefix }}accept"
+                            autocomplete="off"/>
+                    <label for="mdirector_widget_accept">
+                        <a href="{{ privacyLink }}" target="_blank"
+                                class="md__newsletter--accept">{{ privacyLinkText }}</a>
+                    </label>
+                </p>
+
+                <div class="md__newsletter--area__button">
+                    <button class="md_newsletter--button" type="submit">{{ actionButton }}
+                        {% if isSpinner %}
+                            <img class="md_ajax_loader" src="{{ spinnerPath }}"/>
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    {% endblock %}
+
+    {% block campaignSelector %}
+        <select
+                class="md_template_select"
+                name="{{ campaignFieldName }}"
+                id="{{ campaignFieldName }}">{{ campaignsHMTL }}</select>
+    {% endblock %}
